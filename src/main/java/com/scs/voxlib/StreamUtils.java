@@ -42,7 +42,7 @@ public final class StreamUtils {
             throw new IOException("Not enough bytes to read a vector3b");
         }
 
-        return new GridPoint3((byte)x, (byte)y, (byte)z);
+        return new GridPoint3((byte)x & 0xff, (byte)y & 0xff, (byte)z & 0xff);
     }
 
 	public static String readString(InputStream stream) throws IOException {
