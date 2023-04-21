@@ -22,6 +22,12 @@ public final class VoxRootChunk extends VoxChunk {
 	private final HashMap<Integer, VoxTransformChunk> transformChunks = new HashMap<Integer, VoxTransformChunk>();
 	private final HashMap<Integer, VoxGroupChunk> groupChunks = new HashMap<Integer, VoxGroupChunk>();
 	private VoxTransformChunk root_transform;
+
+	/**
+	 * Chunks SIZE and XYZI always come in pairs.
+	 * This is a temporary variable that remembers the last SIZE, so that
+	 * it can be used for the next XYZI chunk.
+	 */
 	private GridPoint3 size;
 	private final List<VoxChunk> children = new ArrayList<>();
 
