@@ -20,8 +20,8 @@ public final class VoxShapeChunk extends VoxChunk {
     }
 
     public static VoxShapeChunk read(InputStream stream) throws IOException {
-        var id = StreamUtils.readIntLE(stream);
-        var chunk = new VoxShapeChunk(id);
+        int id = StreamUtils.readIntLE(stream);
+        VoxShapeChunk chunk = new VoxShapeChunk(id);
 
         HashMap<String, String> dict = StreamUtils.readDictionary(stream);
         /*if (dict.size() > 0) {
@@ -47,7 +47,7 @@ public final class VoxShapeChunk extends VoxChunk {
         StreamUtils.writeIntLE(id, stream);
         StreamUtils.writeIntLE(0, stream); // dict
         StreamUtils.writeIntLE(model_ids.size(), stream);
-        for (var modelId : model_ids) {
+        for (int modelId : model_ids) {
             StreamUtils.writeIntLE(modelId, stream);
             StreamUtils.writeIntLE(0, stream); // dict
         }

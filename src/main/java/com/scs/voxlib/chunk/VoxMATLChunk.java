@@ -20,7 +20,7 @@ public final class VoxMATLChunk extends VoxChunk {
     public static VoxMATLChunk read(InputStream stream) throws IOException {
         int id = StreamUtils.readIntLE(stream);
         HashMap<String, String> props = StreamUtils.readDictionary(stream);
-        var material = new VoxMaterial(id, props);
+        VoxMaterial material = new VoxMaterial(id, props);
         return new VoxMATLChunk(material);
     }
 

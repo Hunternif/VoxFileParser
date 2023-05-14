@@ -37,7 +37,7 @@ public final class VoxRootChunk extends VoxChunk {
 
 
 	public static VoxRootChunk read(InputStream stream, InputStream childrenStream) throws IOException {
-		var root = new VoxRootChunk();
+		VoxRootChunk root = new VoxRootChunk();
 		VoxChunk first = VoxChunk.readChunk(childrenStream);
 
 		if (first instanceof VoxPackChunk) {
@@ -201,7 +201,7 @@ public final class VoxRootChunk extends VoxChunk {
 
 	@Override
 	protected void writeChildren(OutputStream stream) throws IOException {
-		for (var chunk : children) {
+		for (VoxChunk chunk : children) {
 			if (ChunkFactory.supportedTypes.contains(chunk.getType())) {
 				chunk.writeTo(stream);
 			}

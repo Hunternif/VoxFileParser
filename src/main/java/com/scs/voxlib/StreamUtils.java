@@ -105,7 +105,7 @@ public final class StreamUtils {
     public static void writeDictionary(Map<String, String> dict, OutputStream stream) throws IOException {
         writeIntLE(dict.size(), stream);
 
-        for (var entry : dict.entrySet()) {
+        for (Map.Entry<String, String> entry : dict.entrySet()) {
             writeString(entry.getKey(), stream);
             writeString(entry.getValue(), stream);
         }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class VoxTransformChunk extends VoxChunk {
 
@@ -20,8 +21,8 @@ public final class VoxTransformChunk extends VoxChunk {
 	}
 
 	public static VoxTransformChunk read(InputStream stream) throws IOException {
-		var id = StreamUtils.readIntLE(stream);
-		var chunk = new VoxTransformChunk(id);
+		int id = StreamUtils.readIntLE(stream);
+		VoxTransformChunk chunk = new VoxTransformChunk(id);
 		HashMap<String, String> dict = StreamUtils.readDictionary(stream);
 		/*if (dict.containsKey("_name")) {
 			Settings.p("nTrn Name: " + dict.get("_name"));
@@ -65,7 +66,7 @@ public final class VoxTransformChunk extends VoxChunk {
 		StreamUtils.writeIntLE(0, stream); // layer_id
 		if (transform.x != 0 || transform.y != 0 || transform.z != 0) {
 			StreamUtils.writeIntLE(1, stream); // frames
-			var rot = new HashMap<String, String>();
+			Map<String, String> rot = new HashMap<String, String>();
 			rot.put("_t", String.format("%d %d %d", transform.x, transform.y, transform.z));
 			StreamUtils.writeDictionary(rot, stream);
 		} else {

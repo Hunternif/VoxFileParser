@@ -15,7 +15,7 @@ public final class VoxPackChunk extends VoxChunk {
     }
 
     public static VoxPackChunk read(InputStream stream) throws IOException {
-        var modelCount = StreamUtils.readIntLE(stream);
+        int modelCount = StreamUtils.readIntLE(stream);
         return new VoxPackChunk(modelCount);
     }
 

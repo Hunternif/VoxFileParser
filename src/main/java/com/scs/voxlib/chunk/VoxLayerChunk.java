@@ -21,7 +21,7 @@ public final class VoxLayerChunk extends VoxChunk {
 	public static VoxLayerChunk read(InputStream stream)
 		throws IOException
 	{
-		var chunk = new VoxLayerChunk();
+		VoxLayerChunk chunk = new VoxLayerChunk();
 		chunk.id = StreamUtils.readIntLE(stream);
 		HashMap<String, String> dict = StreamUtils.readDictionary(stream);
 		//Settings.p("dict=" + dict);

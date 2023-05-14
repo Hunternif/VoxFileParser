@@ -74,9 +74,9 @@ public final class VoxRGBAChunk extends VoxChunk {
     }
 
     public static VoxRGBAChunk read(InputStream stream) throws IOException {
-        var chunk = new VoxRGBAChunk();
+        VoxRGBAChunk chunk = new VoxRGBAChunk();
         for (int i = 0; i < 255; i++) {
-            var abgr = StreamUtils.readIntLE(stream);
+            int abgr = StreamUtils.readIntLE(stream);
             chunk.palette[i + 1] = ABGRToARGB(abgr);
         }
         return chunk;
@@ -111,7 +111,7 @@ public final class VoxRGBAChunk extends VoxChunk {
     @Override
     protected void writeContent(OutputStream stream) throws IOException {
         for (int i = 0; i < 255; i++) {
-            var abgr = ARGBToABGR(palette[i + 1]);
+            int abgr = ARGBToABGR(palette[i + 1]);
             StreamUtils.writeIntLE(abgr, stream);
         }
     }

@@ -61,15 +61,15 @@ public abstract class VoxChunk {
 
 	public final void writeTo(OutputStream stream) throws IOException {
 		try (
-			var contentStream = new ByteArrayOutputStream();
-			var childStream = new ByteArrayOutputStream();
+				ByteArrayOutputStream contentStream = new ByteArrayOutputStream();
+				ByteArrayOutputStream childStream = new ByteArrayOutputStream();
 		) {
 			stream.write(type.getBytes(StandardCharsets.UTF_8));
 			writeContent(contentStream);
-			var contentBytes = contentStream.toByteArray();
+			byte[] contentBytes = contentStream.toByteArray();
 
 			writeChildren(childStream);
-			var childBytes = childStream.toByteArray();
+			byte[] childBytes = childStream.toByteArray();
 
 			StreamUtils.writeIntLE(contentBytes.length, stream);
 			StreamUtils.writeIntLE(childBytes.length, stream);

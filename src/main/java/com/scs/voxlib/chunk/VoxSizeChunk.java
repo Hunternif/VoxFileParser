@@ -22,7 +22,7 @@ public final class VoxSizeChunk extends VoxChunk {
     }
 
     public static VoxSizeChunk read(InputStream stream) throws IOException {
-        var size = StreamUtils.readVector3i(stream);
+        GridPoint3 size = StreamUtils.readVector3i(stream);
         //System.out.println("Read size of " + size);
         return new VoxSizeChunk(size);
     }

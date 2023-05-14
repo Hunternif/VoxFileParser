@@ -1,5 +1,6 @@
 package com.scs.voxlib.chunk;
 
+import com.scs.voxlib.GridPoint3;
 import com.scs.voxlib.StreamUtils;
 import com.scs.voxlib.Voxel;
 
@@ -25,12 +26,12 @@ public final class VoxXYZIChunk extends VoxChunk {
 
     public static VoxXYZIChunk read(InputStream stream) throws IOException {
         int voxelCount = StreamUtils.readIntLE(stream);
-        var chunk = new VoxXYZIChunk(voxelCount);
+        VoxXYZIChunk chunk = new VoxXYZIChunk(voxelCount);
         //System.out.println(voxelCount + " voxels");
 
         for (int i = 0; i < voxelCount; i++) {
-            var position = StreamUtils.readVector3b(stream);
-            var colorIndex = (byte) ((byte)stream.read() & 0xff);
+            GridPoint3 position = StreamUtils.readVector3b(stream);
+            byte colorIndex = (byte) ((byte)stream.read() & 0xff);
             chunk.voxels[i] = new Voxel(position, colorIndex);
         }
         return chunk;
@@ -43,7 +44,7 @@ public final class VoxXYZIChunk extends VoxChunk {
     @Override
     protected void writeContent(OutputStream stream) throws IOException {
         StreamUtils.writeIntLE(voxels.length, stream);
-        for (var voxel : voxels) {
+        for (Voxel voxel : voxels) {
             StreamUtils.writeVector3b(voxel.getPosition(), stream);
             stream.write(voxel.getColourIndex());
         }

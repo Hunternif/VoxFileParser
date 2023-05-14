@@ -20,8 +20,8 @@ public final class VoxGroupChunk extends VoxChunk {
     }
 
     public static VoxGroupChunk read(InputStream stream) throws IOException {
-        var id = StreamUtils.readIntLE(stream);
-        var chunk = new VoxGroupChunk(id);
+        int id = StreamUtils.readIntLE(stream);
+        VoxGroupChunk chunk = new VoxGroupChunk(id);
         HashMap<String, String> dict = StreamUtils.readDictionary(stream);
         /*if (dict.size() > 0) {
     		Settings.p("dict=" + dict);
@@ -40,6 +40,6 @@ public final class VoxGroupChunk extends VoxChunk {
         StreamUtils.writeIntLE(id, stream);
         StreamUtils.writeIntLE(0, stream); // dict
         StreamUtils.writeIntLE(child_ids.size(), stream);
-        for (var childId : child_ids) StreamUtils.writeIntLE(childId, stream);
+        for (int childId : child_ids) StreamUtils.writeIntLE(childId, stream);
     }
 }

@@ -19,10 +19,12 @@ public class VoxWriter implements Closeable {
     }
 
     public void write(VoxFile file) throws IOException {
-        try (stream) {
+        try {
             stream.write(VoxReader.MAGIC_BYTES);
             StreamUtils.writeIntLE(file.getVersion(), stream);
             file.getRoot().writeTo(stream);
+        } finally {
+            stream.close();
         }
     }
 

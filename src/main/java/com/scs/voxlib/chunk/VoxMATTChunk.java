@@ -42,7 +42,7 @@ public final class VoxMATTChunk extends VoxChunk {
         }
 
         try {
-            var material = new VoxOldMaterial(id, weight, matType, properties, isTotalPower);
+            VoxOldMaterial material = new VoxOldMaterial(id, weight, matType, properties, isTotalPower);
             return new VoxMATTChunk(material);
         } catch (IllegalArgumentException e) {
             throw new InvalidVoxException("Material with ID " + id + " is invalid", e);
